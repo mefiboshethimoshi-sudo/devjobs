@@ -1,13 +1,26 @@
 import React from 'react'
 import styles from './JobCard.module.css'
 
-const JobCard = () => {
+interface Job {
+  id: number
+  title: string
+  company: string
+  location: string
+  salary: string
+  isRemote: boolean
+}
+
+interface JobCardProps {
+  job: Job
+}
+
+const JobCard = ({ job }: JobCardProps) => {
   return (
     <div className={styles.card}>
-      <h2 className={styles.title}>Senior Frontend Dev</h2>
-      <p className={styles.company}>TechCorp Africa</p>
-      <p className={styles.location}>Nairobi, Kenya</p>
-      <p className={styles.salary}>KES 150k–200k</p>
+      <h2 className={styles.title}>{job.title}</h2>
+      <p className={styles.company}>{job.company}</p>
+      <p className={styles.location}>{job.location}</p>
+      <p className={styles.salary}>{job.salary}</p>
     </div>
   )
 }
