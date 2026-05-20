@@ -1,0 +1,21 @@
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  color: white;
+  margin-bottom: 8px;
+}
+
+/* Variants */
+.green {
+  background-color: #22c55e;
+}
+
+.blue {
+  background-color: #3b82f6;
+}
+
+.orange {
+  background-color: #f97316;
+}
