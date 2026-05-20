@@ -1,28 +1,29 @@
-import React from 'react'
-import styles from './JobCard.module.css'
+import styles from "./JobCard.module.css";
 
-interface Job {
-  id: number
-  title: string
-  company: string
-  location: string
-  salary: string
-  isRemote: boolean
-}
+type Job = {
+  title: string;
+  company: string;
+  location: string;
+  isRemote: boolean;
+};
 
-interface JobCardProps {
-  job: Job
-}
+type Props = {
+  job: Job;
+};
 
-const JobCard = ({ job }: JobCardProps) => {
+export default function JobCard({ job }: Props) {
   return (
     <div className={styles.card}>
-      <h2 className={styles.title}>{job.title}</h2>
-      <p className={styles.company}>{job.company}</p>
-      <p className={styles.location}>{job.location}</p>
-      <p className={styles.salary}>{job.salary}</p>
-    </div>
-  )
-}
+      <h3 className={styles.title}>{job.title}</h3>
 
-export default JobCard
+      {/* ✅ Conditional Rendering (NO empty space if false) */}
+      {job.isRemote && (
+        <span className={styles.remoteBadge}>Remote</span>
+      )}
+
+      <p className={styles.company}>
+        {job.company} · {job.location}
+      </p>
+    </div>
+  );
+}
