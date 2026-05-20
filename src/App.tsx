@@ -1,10 +1,23 @@
-function App() {
+import React from 'react'
+import JobCard from './components/JobCard'
+
+const App = () => {
   return (
-    <div>
-      <h1>DevJobs: System Online ⚡</h1>
-      <p>Mission Pilot: Aisha Mwamba</p>
+    <div
+      style={{
+        display: 'flex',
+        gap: '20px',
+        justifyContent: 'center',
+        padding: '40px',
+        backgroundColor: '#f3f4f6',
+        minHeight: '100vh',
+      }}
+    >
+      <JobCard />
+      <JobCard />
+      <JobCard />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
