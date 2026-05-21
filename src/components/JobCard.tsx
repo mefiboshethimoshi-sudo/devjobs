@@ -1,9 +1,11 @@
+import styles from "./JobCard.module.css";
+
 interface JobProps {
   id: number;
   title: string;
   company: string;
   location: string;
-  salary?: string; // optional
+  salary?: string;
   isRemote: boolean;
   postedAt: string;
 }
@@ -17,15 +19,22 @@ function JobCard({
   postedAt,
 }: JobProps) {
   return (
-    <div>
-      <h2>{title}</h2>
-      <h3>{company}</h3>
-      <p>{location}</p>
+    <div className={styles.card}>
+      <h2 className={styles.title}>{title}</h2>
 
-      {salary && <p>{salary}</p>}
+      <h3 className={styles.company}>{company}</h3>
 
-      <p>{isRemote ? "Remote" : "On-site"}</p>
-      <small>{postedAt}</small>
+      <p className={styles.location}>{location}</p>
+
+      <p className={styles.salary}>
+        {salary ?? "Salary not listed"}
+      </p>
+
+      <p className={styles.remote}>
+        {isRemote ? "Remote" : "On-site"}
+      </p>
+
+      <small className={styles.postedAt}>{postedAt}</small>
     </div>
   );
 }
