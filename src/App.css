@@ -1,12 +1,17 @@
 .job-list {
-  display: grid;
-  gap: 20px;
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 12px;
+}
+
+.card {
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .empty-state {
   text-align: center;
-  padding: 60px 20px;
+  padding: 40px 20px;
   color: #777;
-  font-size: 18px;
 }
