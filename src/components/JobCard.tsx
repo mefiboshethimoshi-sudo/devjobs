@@ -1,44 +1,26 @@
-import styles from "./JobCard.module.css";
+import JobCard from "./JobCard";
+import { Job } from "../types";
 
-interface JobProps {
-  id: number;
-  title: string;
-  company: string;
-  location: string;
-  salary?: string;
-  isRemote: boolean;
-  postedAt?: string;
+interface JobListProps {
+  jobs: Job[];
 }
 
-function JobCard({
-  title,
-  company,
-  location,
-  salary,
-  isRemote,
-  postedAt = "Recently",
-}: JobProps) {
+function JobList({ jobs }: JobListProps) {
+  if (jobs.length === 0) {
+    return (
+      <div className="empty-state">
+        <p>No jobs found. Try adjusting your search.</p>
+      </div>
+    );
+  }
+
   return (
-    <div className={styles.card}>
-      <h2 className={styles.title}>{title}</h2>
-
-      <h3 className={styles.company}>{company}</h3>
-
-      <p className={styles.location}>{location}</p>
-
-      <p className={styles.salary}>
-        {salary ?? "Salary not listed"}
-      </p>
-
-      <p className={styles.remote}>
-        {isRemote ? "Remote" : "On-site"}
-      </p>
-
-      <small className={styles.postedAt}>
-        {postedAt}
-      </small>
+    <div className="job-list">
+      {jobs.map((job) => (
+        <JobCard key={job.id} {...job} />
+      ))}
     </div>
   );
 }
 
-export default JobCard;
+export default JobList;
