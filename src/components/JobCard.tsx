@@ -11,8 +11,17 @@ function JobCard({
 }: Job): JSX.Element {
   return (
     <div className={styles.card}>
+      {company.logo && (
+        <img
+          src={company.logo}
+          alt={company.name}
+          className={styles.logo}
+        />
+      )}
+
       <h2 className={styles.title}>{title}</h2>
-      <h3 className={styles.company}>{company}</h3>
+
+      <h3 className={styles.company}>{company.name}</h3>
 
       <p className={styles.location}>{location}</p>
 
