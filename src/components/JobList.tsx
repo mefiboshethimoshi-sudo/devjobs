@@ -1,23 +1,27 @@
 import JobCard from "./JobCard";
-
-export type Job = {
-  id: number;
-  title: string;
-  company: string;
-  location: string;
-  isRemote: boolean;
-};
+import { Job } from "../types";
 
 interface JobListProps {
   jobs: Job[];
 }
 
-export default function JobList({ jobs }: JobListProps) {
+function JobList({ jobs }: JobListProps) {
+  // Empty state
+  if (jobs.length === 0) {
+    return (
+      <div className="empty-state">
+        <p>No jobs found. Try adjusting your search.</p>
+      </div>
+    );
+  }
+
   return (
-    <div>
+    <div className="job-list">
       {jobs.map((job) => (
-        <JobCard key={job.id} job={job} />
+        <JobCard key={job.id} {...job} />
       ))}
     </div>
   );
 }
+
+export default JobList;
