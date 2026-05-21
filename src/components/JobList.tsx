@@ -5,8 +5,7 @@ interface JobListProps {
   jobs: Job[];
 }
 
-function JobList({ jobs }: JobListProps) {
-  // Empty state
+function JobList({ jobs }: JobListProps): JSX.Element {
   if (jobs.length === 0) {
     return (
       <div className="empty-state">
