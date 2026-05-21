@@ -7,7 +7,7 @@ interface JobProps {
   location: string;
   salary?: string;
   isRemote: boolean;
-  postedAt: string;
+  postedAt?: string;
 }
 
 function JobCard({
@@ -16,7 +16,7 @@ function JobCard({
   location,
   salary,
   isRemote,
-  postedAt,
+  postedAt = "Recently",
 }: JobProps) {
   return (
     <div className={styles.card}>
@@ -34,7 +34,9 @@ function JobCard({
         {isRemote ? "Remote" : "On-site"}
       </p>
 
-      <small className={styles.postedAt}>{postedAt}</small>
+      <small className={styles.postedAt}>
+        {postedAt}
+      </small>
     </div>
   );
 }
