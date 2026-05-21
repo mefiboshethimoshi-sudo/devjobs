@@ -1,34 +1,69 @@
-import { Header, JobList } from "./components";
+import JobCard from "./components/JobCard";
 
-const JOBS = [
+interface JobProps {
+  id: number;
+  title: string;
+  company: string;
+  location: string;
+  salary?: string;
+  isRemote: boolean;
+  postedAt: string;
+}
+
+const JOBS: JobProps[] = [
   {
     id: 1,
-    title: "Senior Frontend Dev",
-    company: "TechCorp",
-    location: "Nairobi",
+    title: "Frontend Engineer",
+    company: "Stripe",
+    location: "Remote — US",
     isRemote: true,
+    postedAt: "2h ago",
   },
   {
     id: 2,
-    title: "Backend Engineer",
-    company: "DataHub",
-    location: "Dar es Salaam",
+    title: "React Developer",
+    company: "Vercel",
+    location: "Remote — Global",
+    salary: "$110k–$140k",
     isRemote: true,
+    postedAt: "5h ago",
   },
   {
     id: 3,
-    title: "DevOps Specialist",
-    company: "CloudBase",
-    location: "Mombasa",
+    title: "UI Engineer",
+    company: "Airbnb",
+    location: "San Francisco, CA",
+    salary: "$130k–$160k",
     isRemote: false,
+    postedAt: "1d ago",
+  },
+  {
+    id: 4,
+    title: "TypeScript Developer",
+    company: "Microsoft",
+    location: "Remote — US",
+    isRemote: true,
+    postedAt: "3d ago",
+  },
+  {
+    id: 5,
+    title: "Web Developer",
+    company: "Shopify",
+    location: "Ottawa, Canada",
+    salary: "$90k–$120k",
+    isRemote: false,
+    postedAt: "1w ago",
   },
 ];
 
-export default function App() {
+function App() {
   return (
     <>
-      <Header />
-      <JobList jobs={JOBS} />
+      {JOBS.map((job) => (
+        <JobCard key={job.id} {...job} />
+      ))}
     </>
   );
 }
+
+export default App;
