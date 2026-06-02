@@ -1,25 +1,24 @@
 import { useState } from 'react';
 import './App.css';
-import JobCard from './components/JobCard';
+
+import JobList from './components/JobList';
+import { JOBS } from './data/jobs';
 
 function App() {
+
   const [searchQuery, setSearchQuery] =
     useState<string>('');
 
-  const jobs = [
-    {
-      id: 1,
-      title: 'Frontend Developer',
-      company: 'Tech Company',
-      location: 'Dar es Salaam',
-    },
-    {
-      id: 2,
-      title: 'Backend Developer',
-      company: 'Software House',
-      location: 'Arusha',
-    },
-  ];
+  const filteredJobs = JOBS.filter(
+    (job) =>
+      job.title
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase()) ||
+
+      job.company
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className="app">
@@ -39,15 +38,7 @@ function App() {
         Searching for: {searchQuery}
       </p>
 
-      {jobs.map((job) => (
-        <JobCard
-          key={job.id}
-          {...job}
-          onSave={(id) =>
-            console.log('Saved job:', id)
-          }
-        />
-      ))}
+      <JobList jobs={filteredJobs} />
 
     </div>
   );
