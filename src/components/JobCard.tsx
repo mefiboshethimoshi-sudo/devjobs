@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { JobCardProps } from '../types';
 
 function JobCard({
@@ -6,26 +5,24 @@ function JobCard({
   title,
   company,
   location,
+  isSaved,
   onSave,
-}: JobCardProps) {
-  const [isSaved, setIsSaved] = useState<boolean>(false);
-
-  function handleSave() {
-    setIsSaved(!isSaved);
-    onSave?.(id);
-  }
+}: JobCardProps & {
+  isSaved: boolean;
+  onSave: (id: number) => void;
+}) {
 
   return (
     <div className="job-card">
+
       <h2>{title}</h2>
-
       <p>{company}</p>
-
       <p>{location}</p>
 
-      <button onClick={handleSave}>
+      <button onClick={() => onSave(id)}>
         {isSaved ? '❤️ Saved' : '🤍 Save'}
       </button>
+
     </div>
   );
 }
