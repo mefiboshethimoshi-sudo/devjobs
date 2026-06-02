@@ -1,39 +1,28 @@
-import styles from "./JobCard.module.css";
-import { Job } from "../types";
+function JobCard() {
+  let viewCount = 0;
 
-function JobCard({
-  title,
-  company,
-  location,
-  salary,
-  isRemote,
-  postedAt = "Recently",
-}: Job): JSX.Element {
   return (
-    <div className={styles.card}>
-      {company.logo && (
-        <img
-          src={company.logo}
-          alt={company.name}
-          className={styles.logo}
-        />
-      )}
+    <div>
+      {/* existing card content */}
 
-      <h2 className={styles.title}>{title}</h2>
+      <p>Views: {viewCount}</p>
 
-      <h3 className={styles.company}>{company.name}</h3>
+      <button
+        onClick={() => {
+          viewCount++;
+          console.log(viewCount);
+        }}
+      >
+        Track View
+      </button>
 
-      <p className={styles.location}>{location}</p>
-
-      <p className={styles.salary}>
-        {salary ?? "Salary not listed"}
-      </p>
-
-      <p className={styles.remote}>
-        {isRemote ? "Remote" : "On-site"}
-      </p>
-
-      <small className={styles.postedAt}>{postedAt}</small>
+      {/* 
+      WHY UI DOES NOT UPDATE:
+      React does not re-render when a regular variable changes because
+      React does not track normal JavaScript variables. Although viewCount
+      increases in memory and appears in the console, React receives no
+      signal to re-render the component, so the screen still shows 0.
+      */}
     </div>
   );
 }
