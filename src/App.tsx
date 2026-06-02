@@ -9,13 +9,33 @@ function App() {
   const [searchQuery, setSearchQuery] =
     useState<string>('');
 
-  const filteredJobs = JOBS.filter((job) =>
-    job.title
-      .toLowerCase()
-      .includes(searchQuery.toLowerCase()) ||
-    job.company
-      .toLowerCase()
-      .includes(searchQuery.toLowerCase())
+  // ✅ LIFTED STATE (SOURCE OF TRUTH)
+  const [savedIds, setSavedIds] =
+    useState<Set<number>>(new Set());
+
+  function handleSave(id: number) {
+    setSavedIds((prev) => {
+      const next = new Set(prev);
+
+      if (next.has(id)) {
+        next.delete(id); // unsave
+      } else {
+        next.add(id); // save
+      }
+
+      return next;
+    });
+  }
+
+  // FILTER JOBS
+  const filteredJobs = JOBS.filter(
+    (job) =>
+      job.title
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase()) ||
+      job.company
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase())
   );
 
   return (
@@ -36,13 +56,16 @@ function App() {
         Searching for: {searchQuery}
       </p>
 
-      {/* ✅ MUST BE EXACTLY HERE (above JobList) */}
       <p className="results-count">
         Showing {filteredJobs.length} of {JOBS.length} jobs
         {searchQuery && ` for "${searchQuery}"`}
       </p>
 
-      <JobList jobs={filteredJobs} />
+      <JobList
+        jobs={filteredJobs}
+        savedIds={savedIds}
+        onSave={handleSave}
+      />
 
     </div>
   );
