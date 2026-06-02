@@ -1,13 +1,29 @@
 import { useState } from 'react';
+import { JobCardProps } from '../types';
 
-function JobCard() {
+function JobCard({
+  id,
+  title,
+  company,
+  location,
+  onSave,
+}: JobCardProps) {
   const [isSaved, setIsSaved] = useState<boolean>(false);
 
-  return (
-    <div>
-      {/* existing card content */}
+  function handleSave() {
+    setIsSaved(!isSaved);
+    onSave?.(id);
+  }
 
-      <button onClick={() => setIsSaved(!isSaved)}>
+  return (
+    <div className="job-card">
+      <h2>{title}</h2>
+
+      <p>{company}</p>
+
+      <p>{location}</p>
+
+      <button onClick={handleSave}>
         {isSaved ? '❤️ Saved' : '🤍 Save'}
       </button>
     </div>
