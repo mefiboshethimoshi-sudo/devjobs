@@ -1,13 +1,17 @@
-function Header() {
+interface HeaderProps {
+  savedCount: number;
+}
+
+export default function Header({ savedCount }: HeaderProps) {
   return (
-    <header className="header">
+    <header>
       <h1>DevJobs</h1>
 
-      <p>
-        Find Your Next Remote Mission
-      </p>
+      {savedCount > 0 && (
+        <span className="saved-badge">
+          ❤️ {savedCount} saved
+        </span>
+      )}
     </header>
   );
 }
-
-export default Header;
