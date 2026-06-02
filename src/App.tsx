@@ -1,6 +1,11 @@
+import { useState } from 'react';
+import './App.css';
 import JobCard from './components/JobCard';
 
 function App() {
+  const [searchQuery, setSearchQuery] =
+    useState<string>('');
+
   const jobs = [
     {
       id: 1,
@@ -17,8 +22,22 @@ function App() {
   ];
 
   return (
-    <div>
+    <div className="app">
+
       <h1>Dev Jobs</h1>
+
+      <input
+        type="text"
+        placeholder="Search jobs..."
+        value={searchQuery}
+        onChange={(e) =>
+          setSearchQuery(e.target.value)
+        }
+      />
+
+      <p>
+        Searching for: {searchQuery}
+      </p>
 
       {jobs.map((job) => (
         <JobCard
@@ -29,6 +48,7 @@ function App() {
           }
         />
       ))}
+
     </div>
   );
 }
