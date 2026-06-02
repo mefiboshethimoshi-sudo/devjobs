@@ -1,9 +1,39 @@
+.app {
+  padding: 16px;
+}
+
+/* ✅ FULL WIDTH INPUT ON MOBILE */
+input {
+  width: 100%;
+  max-width: 500px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+/* ✅ MAKE CARDS RESPONSIVE */
+.job-card {
+  border: 1px solid #ddd;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
+
+/* ✅ HEADER FLEX FOR BADGE */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* ✅ BADGE STYLING */
 .saved-badge {
   background: #ffe4e6;
   color: #e11d48;
   padding: 4px 10px;
   border-radius: 999px;
   font-size: 12px;
-  margin-left: 10px;
-  display: inline-block;
 }
