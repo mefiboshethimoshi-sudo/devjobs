@@ -11,6 +11,13 @@ function App() {
   const [savedIds, setSavedIds] =
     useState<Set<number>>(new Set());
 
+  // ✅ FIX: proper typed event handler
+  function handleSearchChange(
+    e: React.ChangeEvent<HTMLInputElement>
+  ) {
+    setSearchQuery(e.target.value);
+  }
+
   function handleSave(id: number) {
     setSavedIds((prev) => {
       const next = new Set(prev);
@@ -33,18 +40,16 @@ function App() {
   return (
     <div className="app">
 
-      {/* ✅ HEADER WITH COUNT */}
       <Header savedCount={savedIds.size} />
 
       <h1>Dev Jobs</h1>
 
+      {/* FIX: no inline any event typing */}
       <input
         type="text"
         placeholder="Search jobs..."
         value={searchQuery}
-        onChange={(e) =>
-          setSearchQuery(e.target.value)
-        }
+        onChange={handleSearchChange}
       />
 
       <p>
