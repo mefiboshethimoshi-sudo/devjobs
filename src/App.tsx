@@ -9,15 +9,15 @@ function App() {
   const [searchQuery, setSearchQuery] =
     useState<string>('');
 
-  // FILTER THE JOBS ARRAY
-  const filteredJobs = JOBS.filter((job) =>
-    job.title
-      .toLowerCase()
-      .includes(searchQuery.toLowerCase()) ||
+  const filteredJobs = JOBS.filter(
+    (job) =>
+      job.title
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase()) ||
 
-    job.company
-      .toLowerCase()
-      .includes(searchQuery.toLowerCase())
+      job.company
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase())
   );
 
   return (
@@ -38,7 +38,14 @@ function App() {
         Searching for: {searchQuery}
       </p>
 
-      {/* IMPORTANT: USE filteredJobs HERE */}
+      {/* LIVE RESULTS COUNT */}
+      <p className="results-count">
+        Showing {filteredJobs.length} of {JOBS.length} jobs
+
+        {searchQuery &&
+          ` for "${searchQuery}"`}
+      </p>
+
       <JobList jobs={filteredJobs} />
 
     </div>
